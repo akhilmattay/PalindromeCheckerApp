@@ -2,6 +2,7 @@
 //author akhilmattay
 //use case4: Character Array Based Palindrome Check
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp{
     public static void main(String[] args){
@@ -9,20 +10,23 @@ public class PalindromeCheckerApp{
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a word: ");
         String input = scanner.nextLine();
-        char[] chars = input.toCharArray();
-        int start = 0;
-        int end = chars.length - 1;
-        boolean isPalindrome = true;
-        while (start < end) {
 
-            if (chars[start] != chars[end]) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        boolean isPalindrome = true;
+
+        for (char c : input.toCharArray()) {
+
+            if (c != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
+
         if (isPalindrome) {
             System.out.println(input + " is a Palindrome.");
         } else {
