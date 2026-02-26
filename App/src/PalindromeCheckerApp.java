@@ -1,10 +1,7 @@
 //version 4.0
 //author akhilmattay
 //use case4: Character Array Based Palindrome Check
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 //version 6.0
 //author akhilmattay
 //useCase 6:Queue + Stack Based Palindrome Check
@@ -14,36 +11,24 @@ public class PalindromeCheckerApp{
         System.out.print("Welcome to Palindrome Checker App Management System\n");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a string to check palindrome: ");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().toLowerCase();
 
-
-        input = input.toLowerCase();
-
-
-        Queue<Character> queue = new LinkedList<>();
-
-
-        Stack<Character> stack = new Stack<>();
-
+        Deque<Character> deque = new ArrayDeque<>();
 
         for (char c : input.toCharArray()) {
             if (Character.isLetterOrDigit(c)) {
-                queue.add(c);
-                stack.push(c);
+                deque.addLast(c);
             }
         }
 
-
         boolean isPalindrome = true;
 
-
-        while (!queue.isEmpty()) {
-            if (!queue.remove().equals(stack.pop())) {
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
         }
-
 
         if (isPalindrome) {
             System.out.println("\"" + input + "\" is a Palindrome.");
